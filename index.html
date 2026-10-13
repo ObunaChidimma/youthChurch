@@ -5,9 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>The SJYF Tribe | St. Jude's Youth Fellowship, Omole Phase 1</title>
+  <title>The SJYF Tribe | St. Jude's Youth Fellowship</title>
 
   <meta name="description" content="St. Jude's Youth Fellowship, Omole Phase 1, Ikeja, Lagos. Raising a generation of young people that embodies genuine love for God.">
+
+  <meta name="theme-color" content="#5b2a86">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,16 +27,20 @@
       <span class="brand-logo">
         <img src="images/logo.jpg" alt="St. Jude's Youth Fellowship logo">
       </span>
-      <span>The SJYF Tribe</span>
+      <span class="brand-name">The SJYF Tribe</span>
     </a>
 
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+    <button class="nav-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="site-nav">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <nav id="site-nav" class="site-nav" aria-label="Main">
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#declaration">Declaration</a></li>
@@ -54,9 +60,16 @@
   <!-- HERO SECTION -->
   <section class="hero">
 
-    <img class="hero-img" src="images/hero.jpg" alt="Members of St. Jude's Youth Fellowship together">
+    <img
+      class="hero-img"
+      src="images/hero.jpg"
+      alt="Members of St. Jude's Youth Fellowship together">
+
+    <div class="hero-overlay"></div>
 
     <div class="container hero-content">
+      <p class="hero-eyebrow">ST. JUDE'S YOUTH FELLOWSHIP</p>
+
       <h1>Our Year of Limitless Possibilities</h1>
 
       <p class="verse">
@@ -70,7 +83,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container hero-strip-wrap">
       <div class="hero-strip">
 
         <div>
@@ -84,7 +97,7 @@
         </div>
 
         <div>
-          <strong>Mondays, 8:30 to 9:00 PM</strong>
+          <strong>Mondays, 8:30–9:00 PM</strong>
           <span>Prayer meeting</span>
         </div>
 
@@ -98,7 +111,9 @@
     <div class="container split">
 
       <div class="split-text reveal">
-        <h2>Who we are</h2>
+        <p class="eyebrow">WELCOME TO THE TRIBE</p>
+
+        <h2>Who We Are</h2>
 
         <p class="lead">
           We are St. Jude's Youth Fellowship, the young people of St. Jude's, Omole Phase 1, and we call ourselves The SJYF Tribe.
@@ -111,12 +126,12 @@
         <div class="pillars">
 
           <div>
-            <h3>Our motto</h3>
+            <h3>Our Motto</h3>
             <p>Raising a generation of young people that embodies genuine love for God.</p>
           </div>
 
           <div>
-            <h3>Our life together</h3>
+            <h3>Our Life Together</h3>
             <p>Worship, prayer, the Word, drama, music, service and real friendships.</p>
           </div>
 
@@ -124,7 +139,10 @@
       </div>
 
       <figure class="split-img reveal">
-        <img src="https://picsum.photos/seed/sjyf-about/900/1000" alt="The SJYF Tribe together">
+        <img
+          src="https://picsum.photos/seed/sjyf-about/900/1000"
+          alt="The SJYF Tribe together"
+          loading="lazy">
       </figure>
 
     </div>
@@ -135,7 +153,8 @@
     <div class="container">
 
       <div class="section-head reveal">
-        <h2>Prophetic declaration</h2>
+        <p class="eyebrow">OUR FAITH AND FOCUS</p>
+        <h2>Prophetic Declaration</h2>
         <p>Every month carries a theme, and with it declarations we speak over our lives together.</p>
       </div>
 
@@ -150,12 +169,14 @@
         </ul>
       </div>
 
-      <h3 class="reveal">This week with us</h3>
+      <div class="section-head reveal weekly-heading">
+        <h2>This Week With Us</h2>
+      </div>
 
       <div class="grid grid-3">
 
         <article class="card reveal">
-          <h3>Sunday service</h3>
+          <h3>Sunday Service</h3>
           <p>7:00 AM and 10:00 AM. Come and worship with the whole church.</p>
         </article>
 
@@ -165,11 +186,12 @@
         </article>
 
         <article class="card reveal">
-          <h3>Prayer meeting</h3>
-          <p>Mondays, 8:30 to 9:00 PM. Start the week in prayer.</p>
+          <h3>Prayer Meeting</h3>
+          <p>Mondays, 8:30–9:00 PM. Start the week in prayer.</p>
         </article>
 
       </div>
+
     </div>
   </section>
 
@@ -177,188 +199,234 @@
   <section class="section" id="leaders">
     <div class="container">
 
-      <div class="leaders-heading">
-        <div class="section-head reveal">
-          <h2>Meet our leaders</h2>
-          <p>The clergy and executives who serve and guide The SJYF Tribe.</p>
-        </div>
-
-        <div class="leaders-controls" aria-label="Leader carousel controls">
-          <button class="leaders-arrow leaders-prev" type="button" aria-label="See previous leaders">
-            &#8592;
-          </button>
-
-          <button class="leaders-arrow leaders-next" type="button" aria-label="See more leaders">
-            &#8594;
-          </button>
-        </div>
+      <div class="section-head reveal">
+        <p class="eyebrow">THE PEOPLE WHO SERVE</p>
+        <h2>Meet Our Leaders</h2>
+        <p>The clergy and executives who serve and guide The SJYF Tribe.</p>
       </div>
 
-      <div class="grid grid-leaders" id="leaders-track" aria-label="Fellowship leaders">
+      <div class="leaders-carousel">
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>AA</span>
-            <img src="images/leaders/ven-ayo-aluko.jpg" alt="Ven Ayo Aluko" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Ven Ayo Aluko</h3>
-          <p>Vicar</p>
-        </article>
+        <button
+          class="leaders-arrow leaders-prev"
+          type="button"
+          aria-label="See previous leaders">
+          &#8592;
+        </button>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>AA</span>
-            <img src="images/leaders/rev-akintunde-akinlalu.jpg" alt="Rev Akintunde Akinlalu" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Rev Akintunde Akinlalu</h3>
-          <p>Chaplain</p>
-        </article>
+        <div class="grid grid-leaders" id="leaders-track">
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>IO</span>
-            <img src="images/leaders/dr-idahosa-osamhanze.jpg" alt="Dr Idahosa Osamhanze" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Dr Idahosa Osamhanze</h3>
-          <p>Coordinator</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>AA</span>
+              <img src="images/leaders/ven-ayo-aluko.jpg" alt="Ven Ayo Aluko" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Ven Ayo Aluko</h3>
+              <p>Vicar</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>A</span>
-            <img src="images/leaders/bro-ademola.jpg" alt="Bro Ademola" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Ademola</h3>
-          <p>Youth President</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>AA</span>
+              <img src="images/leaders/rev-akintunde-akinlalu.jpg" alt="Rev Akintunde Akinlalu" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Rev Akintunde Akinlalu</h3>
+              <p>Chaplain</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>BO</span>
-            <img src="images/leaders/sis-blessing-okechukwu.jpg" alt="Sis Blessing Okechukwu" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Sis Blessing Okechukwu</h3>
-          <p>Vice President</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>IO</span>
+              <img src="images/leaders/dr-idahosa-osamhanze.jpg" alt="Dr Idahosa Osamhanze" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Dr Idahosa Osamhanze</h3>
+              <p>Coordinator</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>DA</span>
-            <img src="images/leaders/bro-dabiri-ayomide.jpg" alt="Bro Dabiri Ayomide" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Dabiri Ayomide</h3>
-          <p>General Secretary</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>A</span>
+              <img src="images/leaders/bro-ademola.jpg" alt="Bro Ademola" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Ademola</h3>
+              <p>Youth President</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>PA</span>
-            <img src="images/leaders/sis-precious-abonyi.jpg" alt="Sis Precious Abonyi" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Sis Precious Abonyi</h3>
-          <p>Assistant General Secretary</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>BO</span>
+              <img src="images/leaders/sis-blessing-okechukwu.jpg" alt="Sis Blessing Okechukwu" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Sis Blessing Okechukwu</h3>
+              <p>Vice President</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>OD</span>
-            <img src="images/leaders/bro-osamhanze-delight.jpg" alt="Bro Osamhanze Delight" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Osamhanze Delight</h3>
-          <p>Prayer and Word Coordinator</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>DA</span>
+              <img src="images/leaders/bro-dabiri-ayomide.jpg" alt="Bro Dabiri Ayomide" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Dabiri Ayomide</h3>
+              <p>General Secretary</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>IA</span>
-            <img src="images/leaders/bro-isreal-adeyemi.jpg" alt="Bro Isreal Adeyemi" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Isreal Adeyemi</h3>
-          <p>Choir Director</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>PA</span>
+              <img src="images/leaders/sis-precious-abonyi.jpg" alt="Sis Precious Abonyi" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Sis Precious Abonyi</h3>
+              <p>Assistant General Secretary</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>PU</span>
-            <img src="images/leaders/bro-philip-uche.jpg" alt="Bro Philip Uche" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Philip Uche</h3>
-          <p>Drama Coordinator</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>OD</span>
+              <img src="images/leaders/bro-osamhanze-delight.jpg" alt="Bro Osamhanze Delight" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Osamhanze Delight</h3>
+              <p>Prayer and Word Coordinator</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>KJ</span>
-            <img src="images/leaders/bro-kelechi-johnson.jpg" alt="Bro Kelechi Johnson" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Kelechi Johnson</h3>
-          <p>Assistant Drama Coordinator</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>IA</span>
+              <img src="images/leaders/bro-isreal-adeyemi.jpg" alt="Bro Isreal Adeyemi" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Isreal Adeyemi</h3>
+              <p>Choir Director</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>NO</span>
-            <img src="images/leaders/sis-nonye-onwunaike.jpg" alt="Sis Nonye Onwunaike" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Sis Nonye Onwunaike</h3>
-          <p>Welfare Secretary</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>PU</span>
+              <img src="images/leaders/bro-philip-uche.jpg" alt="Bro Philip Uche" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Philip Uche</h3>
+              <p>Drama Coordinator</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>OI</span>
-            <img src="images/leaders/bro-okolo-ikechukwu.jpg" alt="Bro Okolo Ikechukwu" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Okolo Ikechukwu</h3>
-          <p>Organizing Secretary</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>KJ</span>
+              <img src="images/leaders/bro-kelechi-johnson.jpg" alt="Bro Kelechi Johnson" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Kelechi Johnson</h3>
+              <p>Assistant Drama Coordinator</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>OW</span>
-            <img src="images/leaders/bro-osamhanze-wisdom.jpg" alt="Bro Osamhanze Wisdom" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Osamhanze Wisdom</h3>
-          <p>Chief Usher / Protocol</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>NO</span>
+              <img src="images/leaders/sis-nonye-onwunaike.jpg" alt="Sis Nonye Onwunaike" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Sis Nonye Onwunaike</h3>
+              <p>Welfare Secretary</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>IA</span>
-            <img src="images/leaders/sis-ifeoma-anaka.jpg" alt="Sis Ifeoma Anaka" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Sis Ifeoma Anaka</h3>
-          <p>Financial Secretary 1</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>OI</span>
+              <img src="images/leaders/bro-okolo-ikechukwu.jpg" alt="Bro Okolo Ikechukwu" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Okolo Ikechukwu</h3>
+              <p>Organizing Secretary</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>DO</span>
-            <img src="images/leaders/bro-dipo-ojo-ayo.jpg" alt="Bro Dipo Ojo Ayo" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Dipo Ojo Ayo</h3>
-          <p>Financial Secretary 2</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>OW</span>
+              <img src="images/leaders/bro-osamhanze-wisdom.jpg" alt="Bro Osamhanze Wisdom" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Osamhanze Wisdom</h3>
+              <p>Chief Usher / Protocol</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>VA</span>
-            <img src="images/leaders/bro-victor-alaoma.jpg" alt="Bro Victor Alaoma" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Victor Alaoma</h3>
-          <p>PRO</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>IA</span>
+              <img src="images/leaders/sis-ifeoma-anaka.jpg" alt="Sis Ifeoma Anaka" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Sis Ifeoma Anaka</h3>
+              <p>Financial Secretary 1</p>
+            </div>
+          </article>
 
-        <article class="leader reveal">
-          <div class="photo">
-            <span>OO</span>
-            <img src="images/leaders/bro-olaniyi-olusegun.jpg" alt="Bro Olaniyi Olusegun" loading="lazy" onerror="this.remove()">
-          </div>
-          <h3>Bro Olaniyi Olusegun</h3>
-          <p>Committee Member</p>
-        </article>
+          <article class="leader reveal">
+            <div class="photo">
+              <span>DO</span>
+              <img src="images/leaders/bro-dipo-ojo-ayo.jpg" alt="Bro Dipo Ojo Ayo" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Dipo Ojo Ayo</h3>
+              <p>Financial Secretary 2</p>
+            </div>
+          </article>
+
+          <article class="leader reveal">
+            <div class="photo">
+              <span>VA</span>
+              <img src="images/leaders/bro-victor-alaoma.jpg" alt="Bro Victor Alaoma" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Victor Alaoma</h3>
+              <p>PRO</p>
+            </div>
+          </article>
+
+          <article class="leader reveal">
+            <div class="photo">
+              <span>OO</span>
+              <img src="images/leaders/bro-olaniyi-olusegun.jpg" alt="Bro Olaniyi Olusegun" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="leader-info">
+              <h3>Bro Olaniyi Olusegun</h3>
+              <p>Committee Member</p>
+            </div>
+          </article>
+
+        </div>
+
+        <button
+          class="leaders-arrow leaders-next"
+          type="button"
+          aria-label="See more leaders">
+          &#8594;
+        </button>
 
       </div>
+
+      <p class="carousel-hint">Swipe to see more leaders, or use the arrows.</p>
+
     </div>
   </section>
 
@@ -367,7 +435,8 @@
     <div class="container">
 
       <div class="section-head reveal">
-        <h2>Fellowship moments</h2>
+        <p class="eyebrow">LIFE IN THE TRIBE</p>
+        <h2>Fellowship Moments</h2>
         <p>Highlights from our harvest and beyond.</p>
       </div>
 
@@ -434,7 +503,8 @@
     <div class="container">
 
       <div class="section-head reveal">
-        <h2>Give and support</h2>
+        <p class="eyebrow">PARTNER WITH US</p>
+        <h2>Give and Support</h2>
         <p>Your giving keeps the fellowship growing and funds projects that touch lives.</p>
       </div>
 
@@ -477,7 +547,8 @@
     <div class="container split">
 
       <div class="split-text reveal">
-        <h2>Come and visit</h2>
+        <p class="eyebrow">YOU ARE WELCOME</p>
+        <h2>Come and Visit</h2>
         <p class="lead">We would love to meet you. Just come.</p>
 
         <ul class="info-list">
@@ -498,12 +569,16 @@
 
           <li>
             <strong>Monday</strong>
-            <span>Prayer meeting, 8:30 to 9:00 PM</span>
+            <span>Prayer meeting, 8:30–9:00 PM</span>
           </li>
         </ul>
 
-        <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&query=13+Ademola+Ajasa+Omole+Estate+Phase+1+Ikeja+Lagos" target="_blank" rel="noopener">
-          Get directions
+        <a
+          class="btn btn-dark"
+          href="https://www.google.com/maps/search/?api=1&amp;query=13+Ademola+Ajasa+Omole+Estate+Phase+1+Ikeja+Lagos"
+          target="_blank"
+          rel="noopener">
+          Get Directions
         </a>
       </div>
 
@@ -523,7 +598,8 @@
     <div class="container">
 
       <div class="section-head reveal">
-        <h2>Connect with us</h2>
+        <p class="eyebrow">LET'S CONNECT</p>
+        <h2>Connect With Us</h2>
         <p>Ready to join the Tribe or have a question? Reach out.</p>
       </div>
 
@@ -564,7 +640,7 @@
 <footer class="site-footer">
   <div class="container footer-grid">
 
-    <div>
+    <div class="footer-about">
       <a href="#top" class="brand footer-brand">The SJYF Tribe</a>
       <p>
         St. Jude's Youth Fellowship, Omole Phase 1. Raising a generation of young people that embodies genuine love for God.
@@ -572,7 +648,7 @@
     </div>
 
     <div>
-      <h3>Quick links</h3>
+      <h3>Quick Links</h3>
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#leaders">Leaders</a></li>
@@ -582,16 +658,16 @@
     </div>
 
     <div>
-      <h3>We meet</h3>
+      <h3>We Meet</h3>
       <ul>
-        <li>Sun 7 AM and 10 AM</li>
-        <li>Sat 5 PM</li>
-        <li>Mon 8:30 PM</li>
+        <li>Sunday: 7 AM and 10 AM</li>
+        <li>Saturday: 5 PM</li>
+        <li>Monday: 8:30 PM</li>
       </ul>
     </div>
 
     <div>
-      <h3>Follow us</h3>
+      <h3>Follow Us</h3>
       <ul>
         <li>
           <span>Instagram:</span>

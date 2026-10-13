@@ -1,86 +1,84 @@
 
-// Let the CSS know JavaScript is available.
-document.documentElement.classList.add('js');
+"use strict";
 
-const header = document.querySelector('.site-header');
-const menuButton = document.querySelector('.nav-toggle');
-const menu = document.querySelector('.site-nav');
+// Let CSS know JavaScript is available.
+document.documentElement.classList.add("js");
 
-// Open or close the mobile menu.
+const header = document.querySelector(".site-header");
+const menuButton = document.querySelector(".nav-toggle");
+const menu = document.querySelector(".site-nav");
+
+// Mobile navigation.
 function setMenu(isOpen) {
   if (!header || !menuButton || !menu) return;
 
-  menu.classList.toggle('open', isOpen);
-  header.classList.toggle('menu-open', isOpen);
+  menu.classList.toggle("open", isOpen);
+  header.classList.toggle("menu-open", isOpen);
 
-  menuButton.setAttribute('aria-expanded', String(isOpen));
+  menuButton.setAttribute("aria-expanded", String(isOpen));
   menuButton.setAttribute(
-    'aria-label',
-    isOpen ? 'Close menu' : 'Open menu'
+    "aria-label",
+    isOpen ? "Close menu" : "Open menu"
   );
 
-  document.body.style.overflow = isOpen ? 'hidden' : '';
+  document.body.style.overflow = isOpen ? "hidden" : "";
 }
 
-// Toggle the menu when the button is clicked.
 if (header && menuButton && menu) {
-  menuButton.addEventListener('click', () => {
-    setMenu(!menu.classList.contains('open'));
+  menuButton.addEventListener("click", () => {
+    setMenu(!menu.classList.contains("open"));
   });
 
-  // Close the menu when a navigation link is clicked.
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+  menu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
       setMenu(false);
     });
   });
 
-  // Close the menu when Escape is pressed.
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') {
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
       setMenu(false);
     }
   });
 
-  // Close the mobile menu when the screen becomes desktop-sized.
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     if (window.innerWidth >= 960) {
       setMenu(false);
     }
   });
 }
 
-// Change the header style when the page is scrolled.
+// Header scroll effect.
 function updateHeader() {
-  if (!header) return;
-
-  header.classList.toggle('scrolled', window.scrollY > 40);
+  if (header) {
+    header.classList.toggle("scrolled", window.scrollY > 40);
+  }
 }
 
-window.addEventListener('scroll', updateHeader, {
+window.addEventListener("scroll", updateHeader, {
   passive: true
 });
 
 updateHeader();
 
-// Reveal sections when they enter the screen.
-const revealItems = document.querySelectorAll('.reveal');
+// Reveal elements as they enter the screen.
+const revealItems = document.querySelectorAll(".reveal");
 
-if ('IntersectionObserver' in window) {
+if ("IntersectionObserver" in window) {
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
 
-      entry.target.classList.add('visible');
+      entry.target.classList.add("visible");
 
       window.setTimeout(() => {
-        entry.target.classList.remove('reveal', 'visible');
-      }, 800);
+        entry.target.classList.remove("reveal", "visible");
+      }, 550);
 
       revealObserver.unobserve(entry.target);
     });
   }, {
-    threshold: 0.12
+    threshold: 0.08
   });
 
   revealItems.forEach(item => {
@@ -88,54 +86,54 @@ if ('IntersectionObserver' in window) {
   });
 } else {
   revealItems.forEach(item => {
-    item.classList.remove('reveal');
+    item.classList.remove("reveal");
   });
 }
 
-// Gallery arrows move horizontally through the photos.
-const gallery = document.querySelector('.gallery');
-const previousGalleryButton = document.querySelector('.gallery-prev');
-const nextGalleryButton = document.querySelector('.gallery-next');
+// Gallery carousel arrows.
+const gallery = document.querySelector(".gallery");
+const galleryPrev = document.querySelector(".gallery-prev");
+const galleryNext = document.querySelector(".gallery-next");
 
-if (gallery && previousGalleryButton && nextGalleryButton) {
-  previousGalleryButton.addEventListener('click', () => {
-    gallery.scrollBy({
-      left: -gallery.clientWidth * 0.8,
-      behavior: 'smooth'
-    });
-  });
-
-  nextGalleryButton.addEventListener('click', () => {
+if (gallery && galleryPrev && galleryNext) {
+  galleryNext.addEventListener("click", () => {
     gallery.scrollBy({
       left: gallery.clientWidth * 0.8,
-      behavior: 'smooth'
+      behavior: "smooth"
+    });
+  });
+
+  galleryPrev.addEventListener("click", () => {
+    gallery.scrollBy({
+      left: -gallery.clientWidth * 0.8,
+      behavior: "smooth"
     });
   });
 }
 
-// Leader arrows move through the two-row leaders carousel.
-const leadersTrack = document.querySelector('#leaders-track');
-const previousLeadersButton = document.querySelector('.leaders-prev');
-const nextLeadersButton = document.querySelector('.leaders-next');
+// Leaders carousel arrows.
+const leadersTrack = document.querySelector("#leaders-track");
+const leadersPrev = document.querySelector(".leaders-prev");
+const leadersNext = document.querySelector(".leaders-next");
 
-if (leadersTrack && previousLeadersButton && nextLeadersButton) {
-  previousLeadersButton.addEventListener('click', () => {
-    leadersTrack.scrollBy({
-      left: -leadersTrack.clientWidth * 0.8,
-      behavior: 'smooth'
-    });
-  });
-
-  nextLeadersButton.addEventListener('click', () => {
+if (leadersTrack && leadersPrev && leadersNext) {
+  leadersNext.addEventListener("click", () => {
     leadersTrack.scrollBy({
       left: leadersTrack.clientWidth * 0.8,
-      behavior: 'smooth'
+      behavior: "smooth"
+    });
+  });
+
+  leadersPrev.addEventListener("click", () => {
+    leadersTrack.scrollBy({
+      left: -leadersTrack.clientWidth * 0.8,
+      behavior: "smooth"
     });
   });
 }
 
-// Automatically update the copyright year.
-const year = document.getElementById('year');
+// Update the copyright year automatically.
+const year = document.getElementById("year");
 
 if (year) {
   year.textContent = new Date().getFullYear();
