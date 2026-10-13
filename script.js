@@ -1,76 +1,142 @@
 
-/* ==================== 1. ENABLE ANIMATIONS ==================== */
-document.documentElement.classList.add("js");
+// Let the CSS know JavaScript is available.
+document.documentElement.classList.add('js');
 
-/* ==================== 2. SELECT ELEMENTS ==================== */
-const header = document.querySelector(".site-header");
-const toggle = document.querySelector(".nav-toggle");
-const nav = document.querySelector(".site-nav");
+const header = document.querySelector('.site-header');
+const menuButton = document.querySelector('.nav-toggle');
+const menu = document.querySelector('.site-nav');
 
-/* ==================== 3. MOBILE MENU ==================== */
-function setMenu(open) {
-  nav.classList.toggle("open", open);
-  header.classList.toggle("menu-open", open);
+// Open or close the mobile menu.
+function setMenu(isOpen) {
+  if (!header || !menuButton || !menu) return;
 
-  toggle.setAttribute("aria-expanded", open);
-  toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  menu.classList.toggle('open', isOpen);
+  header.classList.toggle('menu-open', isOpen);
 
-  document.body.style.overflow = open ? "hidden" : "";
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+  menuButton.setAttribute(
+    'aria-label',
+    isOpen ? 'Close menu' : 'Open menu'
+  );
+
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
-// Open and close the menu
-toggle.addEventListener("click", () => {
-  setMenu(!nav.classList.contains("open"));
-});
+// Toggle the menu when the button is clicked.
+if (header && menuButton && menu) {
+  menuButton.addEventListener('click', () => {
+    setMenu(!menu.classList.contains('open'));
+  });
 
-// Close the menu when a link is clicked
-nav.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => setMenu(false));
-});
+  // Close the menu when a navigation link is clicked.
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      setMenu(false);
+    });
+  });
 
-// Close the menu with Escape
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") setMenu(false);
-});
+  // Close the menu when Escape is pressed.
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      setMenu(false);
+    }
+  });
 
-// Close the menu when switching to desktop
-window.addEventListener("resize", () => {
-  if (window.innerWidth >= 900) setMenu(false);
-});
+  // Close the mobile menu when the screen becomes desktop-sized.
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 960) {
+      setMenu(false);
+    }
+  });
+}
 
-/* ==================== 4. HEADER SCROLL EFFECT ==================== */
+// Change the header style when the page is scrolled.
 function updateHeader() {
-  header.classList.toggle("scrolled", window.scrollY > 40);
+  if (!header) return;
+
+  header.classList.toggle('scrolled', window.scrollY > 40);
 }
 
-window.addEventListener("scroll", updateHeader, { passive: true });
+window.addEventListener('scroll', updateHeader, {
+  passive: true
+});
+
 updateHeader();
 
-/* ==================== 5. SCROLL REVEAL ANIMATIONS ==================== */
-const items = document.querySelectorAll(".reveal");
+// Reveal sections when they enter the screen.
+const revealItems = document.querySelectorAll('.reveal');
 
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(entries => {
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
 
-      const element = entry.target;
-      element.classList.add("visible");
+      entry.target.classList.add('visible');
 
-      // Remove animation classes after the animation finishes
-      setTimeout(() => {
-        element.classList.remove("reveal", "visible");
+      window.setTimeout(() => {
+        entry.target.classList.remove('reveal', 'visible');
       }, 800);
 
-      observer.unobserve(element);
+      revealObserver.unobserve(entry.target);
     });
-  }, { threshold: 0.12 });
+  }, {
+    threshold: 0.12
+  });
 
-  items.forEach(element => observer.observe(element));
+  revealItems.forEach(item => {
+    revealObserver.observe(item);
+  });
 } else {
-  // Show everything if animations are unsupported
-  items.forEach(element => element.classList.remove("reveal"));
+  revealItems.forEach(item => {
+    item.classList.remove('reveal');
+  });
 }
 
-/* ==================== 6. AUTOMATIC FOOTER YEAR ==================== */
-document.getElementById("year").textContent = new Date().getFullYear();
+// Gallery arrows move horizontally through the photos.
+const gallery = document.querySelector('.gallery');
+const previousGalleryButton = document.querySelector('.gallery-prev');
+const nextGalleryButton = document.querySelector('.gallery-next');
+
+if (gallery && previousGalleryButton && nextGalleryButton) {
+  previousGalleryButton.addEventListener('click', () => {
+    gallery.scrollBy({
+      left: -gallery.clientWidth * 0.8,
+      behavior: 'smooth'
+    });
+  });
+
+  nextGalleryButton.addEventListener('click', () => {
+    gallery.scrollBy({
+      left: gallery.clientWidth * 0.8,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// Leader arrows move through the two-row leaders carousel.
+const leadersTrack = document.querySelector('#leaders-track');
+const previousLeadersButton = document.querySelector('.leaders-prev');
+const nextLeadersButton = document.querySelector('.leaders-next');
+
+if (leadersTrack && previousLeadersButton && nextLeadersButton) {
+  previousLeadersButton.addEventListener('click', () => {
+    leadersTrack.scrollBy({
+      left: -leadersTrack.clientWidth * 0.8,
+      behavior: 'smooth'
+    });
+  });
+
+  nextLeadersButton.addEventListener('click', () => {
+    leadersTrack.scrollBy({
+      left: leadersTrack.clientWidth * 0.8,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// Automatically update the copyright year.
+const year = document.getElementById('year');
+
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
