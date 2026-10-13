@@ -1,140 +1,60 @@
-
 "use strict";
 
-// Let CSS know JavaScript is available.
+// Lets the CSS know JavaScript is working.
 document.documentElement.classList.add("js");
 
-const header = document.querySelector(".site-header");
+// Tip: missing photos are listed in the browser Console (press F12).
+document.addEventListener("error", e => {
+  if (e.target.tagName === "IMG") console.warn("Image not found:", e.target.getAttribute("src"));
+}, true);
+
+// ----- Mobile menu -----
 const menuButton = document.querySelector(".nav-toggle");
 const menu = document.querySelector(".site-nav");
 
-// Mobile navigation.
-function setMenu(isOpen) {
-  if (!header || !menuButton || !menu) return;
-
-  menu.classList.toggle("open", isOpen);
-  header.classList.toggle("menu-open", isOpen);
-
-  menuButton.setAttribute("aria-expanded", String(isOpen));
-  menuButton.setAttribute(
-    "aria-label",
-    isOpen ? "Close menu" : "Open menu"
-  );
-
-  document.body.style.overflow = isOpen ? "hidden" : "";
+function setMenu(open) {
+  menu.classList.toggle("open", open);
+  menuButton.setAttribute("aria-expanded", String(open));
+  menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  document.body.style.overflow = open ? "hidden" : "";
 }
 
-if (header && menuButton && menu) {
-  menuButton.addEventListener("click", () => {
-    setMenu(!menu.classList.contains("open"));
-  });
+menuButton.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+window.addEventListener("resize", () => { if (window.innerWidth >= 960) setMenu(false); });
 
-  menu.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      setMenu(false);
-    });
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-      setMenu(false);
-    }
-  });
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 960) {
-      setMenu(false);
-    }
-  });
-}
-
-// Header scroll effect.
-function updateHeader() {
-  if (header) {
-    header.classList.toggle("scrolled", window.scrollY > 40);
-  }
-}
-
-window.addEventListener("scroll", updateHeader, {
-  passive: true
-});
-
-updateHeader();
-
-// Reveal elements as they enter the screen.
-const revealItems = document.querySelectorAll(".reveal");
-
+// ----- Fade in sections as they appear -----
+const items = document.querySelectorAll(".reveal");
 if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(entries => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-
-      entry.target.classList.add("visible");
-
-      window.setTimeout(() => {
-        entry.target.classList.remove("reveal", "visible");
-      }, 550);
-
-      revealObserver.unobserve(entry.target);
+      const el = entry.target;
+      el.classList.add("visible");
+      setTimeout(() => el.classList.remove("reveal", "visible"), 600);
+      observer.unobserve(el);
     });
-  }, {
-    threshold: 0.08
-  });
-
-  revealItems.forEach(item => {
-    revealObserver.observe(item);
-  });
+  }, { threshold: 0.08 });
+  items.forEach(el => observer.observe(el));
 } else {
-  revealItems.forEach(item => {
-    item.classList.remove("reveal");
-  });
+  items.forEach(el => el.classList.remove("reveal"));
 }
 
-// Gallery carousel arrows.
-const gallery = document.querySelector(".gallery");
-const galleryPrev = document.querySelector(".gallery-prev");
-const galleryNext = document.querySelector(".gallery-next");
+// ----- Leaders arrows -----
+const track = document.getElementById("leaders-track");
+const prev = document.querySelector(".leaders-prev");
+const next = document.querySelector(".leaders-next");
 
-if (gallery && galleryPrev && galleryNext) {
-  galleryNext.addEventListener("click", () => {
-    gallery.scrollBy({
-      left: gallery.clientWidth * 0.8,
-      behavior: "smooth"
-    });
-  });
-
-  galleryPrev.addEventListener("click", () => {
-    gallery.scrollBy({
-      left: -gallery.clientWidth * 0.8,
-      behavior: "smooth"
-    });
-  });
+function updateArrows() {
+  prev.disabled = track.scrollLeft <= 2;
+  next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
 }
+prev.addEventListener("click", () => track.scrollBy({ left: -track.clientWidth * 0.8, behavior: "smooth" }));
+next.addEventListener("click", () => track.scrollBy({ left: track.clientWidth * 0.8, behavior: "smooth" }));
+track.addEventListener("scroll", updateArrows, { passive: true });
+window.addEventListener("resize", updateArrows);
+updateArrows();
 
-// Leaders carousel arrows.
-const leadersTrack = document.querySelector("#leaders-track");
-const leadersPrev = document.querySelector(".leaders-prev");
-const leadersNext = document.querySelector(".leaders-next");
-
-if (leadersTrack && leadersPrev && leadersNext) {
-  leadersNext.addEventListener("click", () => {
-    leadersTrack.scrollBy({
-      left: leadersTrack.clientWidth * 0.8,
-      behavior: "smooth"
-    });
-  });
-
-  leadersPrev.addEventListener("click", () => {
-    leadersTrack.scrollBy({
-      left: -leadersTrack.clientWidth * 0.8,
-      behavior: "smooth"
-    });
-  });
-}
-
-// Update the copyright year automatically.
-const year = document.getElementById("year");
-
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
+// ----- Footer year -----
+document.getElementById("year").textContent = new Date().getFullYear();
