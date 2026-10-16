@@ -1389,3 +1389,248 @@ button {
     animation: none;
   }
 }
+
+
+.bank-details {
+  max-width: 420px;
+  margin: 24px auto;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #e8e5df;
+  border-radius: 14px;
+  text-align: left;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.bank-label {
+  margin: 0 0 16px;
+  color: #9b8050;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+
+/* ========================================
+   19. BANK DETAILS
+======================================== */
+
+.bank-details {
+  width: 100%;
+  max-width: 420px;
+  margin: 1.5rem auto;
+  padding: 1.25rem;
+  border: 1px solid rgba(91, 42, 134, 0.12);
+  border-top: 4px solid var(--green);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.bank-label {
+  margin-bottom: 0.6rem;
+  color: var(--green-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.bank-details h3 {
+  margin-bottom: 1rem;
+  color: var(--purple);
+  font-size: 1.15rem;
+}
+
+.account-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  border: 1px solid rgba(91, 42, 134, 0.08);
+  border-radius: 12px;
+  background: var(--tint);
+}
+
+.account-info span,
+.account-name span {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.account-info strong {
+  color: var(--purple);
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
+}
+
+.copy-account {
+  flex-shrink: 0;
+  min-height: 40px;
+  padding: 0.55rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--purple);
+  color: var(--white);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.copy-account:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+}
+
+.copy-account:active {
+  transform: scale(0.98);
+}
+
+.account-name {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(91, 42, 134, 0.1);
+}
+
+.account-name p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* Small phone screens */
+@media (max-width: 380px) {
+  .bank-details {
+    padding: 1rem;
+  }
+
+  .account-info {
+    gap: 0.6rem;
+    padding: 0.75rem;
+  }
+
+  .account-info strong {
+    font-size: 1rem;
+  }
+
+  .copy-account {
+    padding-inline: 0.75rem;
+    font-size: 0.78rem;
+  }
+}
+
+
+
+
+/* Slim bank details card */
+.give-section .bank-details,
+.bank-details {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 310px;
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  background: #fff;
+  border: none;
+  border-top: 3px solid var(--green);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.bank-details .bank-label {
+  margin: 0 0 3px;
+  color: var(--green-dark);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.bank-details h3 {
+  margin: 0 0 8px;
+  color: var(--purple);
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+.bank-details .account-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 9px;
+  background: var(--tint);
+  border-radius: 8px;
+}
+
+.bank-details .account-info > div {
+  min-width: 0;
+}
+
+.bank-details .account-info span,
+.bank-details .account-name span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.bank-details .account-info strong {
+  color: var(--purple);
+  font-size: 14px;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.bank-details .copy-account {
+  flex-shrink: 0;
+  padding: 6px 9px;
+  border: none;
+  border-radius: 20px;
+  background: var(--purple);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bank-details .account-name {
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(91, 42, 134, 0.1);
+}
+
+.bank-details .account-name p {
+  margin: 0;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .give-section .bank-details,
+  .bank-details {
+    max-width: 290px;
+    padding: 11px 12px;
+  }
+
+  .bank-details .account-info {
+    padding: 7px;
+  }
+
+  .bank-details .account-info strong {
+    font-size: 13px;
+  }
+}
+
