@@ -1,17 +1,12 @@
-
 "use strict";
 
-// ----- Tell the CSS that JavaScript is working -----
+// Tell the CSS that JavaScript is working.
 document.documentElement.classList.add("js");
 
-
-// ----- Warn when an image cannot load -----
+// Warn us (in the browser Console, press F12) when an image cannot load.
 document.addEventListener("error", event => {
   if (event.target.tagName === "IMG") {
-    console.warn(
-      "Image not found:",
-      event.target.getAttribute("src")
-    );
+    console.warn("Image not found:", event.target.getAttribute("src"));
   }
 }, true);
 
@@ -21,148 +16,79 @@ const menuButton = document.querySelector(".nav-toggle");
 const menu = document.querySelector(".site-nav");
 
 function setMenu(open) {
-  if (!menu || !menuButton) return;
-
   menu.classList.toggle("open", open);
   menuButton.setAttribute("aria-expanded", String(open));
-  menuButton.setAttribute(
-    "aria-label",
-    open ? "Close menu" : "Open menu"
-  );
-
+  menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   document.body.style.overflow = open ? "hidden" : "";
 }
 
 if (menuButton && menu) {
-  menuButton.addEventListener("click", () => {
-    setMenu(!menu.classList.contains("open"));
-  });
-
-  menu.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => setMenu(false));
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-      setMenu(false);
-    }
-  });
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 960) {
-      setMenu(false);
-    }
-  });
+  menuButton.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+  menu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+  window.addEventListener("resize", () => { if (window.innerWidth >= 960) setMenu(false); });
 }
 
 
 // ----- Section fade-in animations -----
-const revealItems = document.querySelectorAll(".reveal");
+const items = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(entries => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-
       const element = entry.target;
-
       element.classList.add("visible");
-
-      setTimeout(() => {
-        element.classList.remove("reveal", "visible");
-      }, 600);
-
-      revealObserver.unobserve(element);
+      setTimeout(() => element.classList.remove("reveal", "visible"), 600);
+      observer.unobserve(element);
     });
-  }, {
-    threshold: 0.08
-  });
-
-  revealItems.forEach(item => {
-    revealObserver.observe(item);
-  });
-
+  }, { threshold: 0.08 });
+  items.forEach(item => observer.observe(item));
 } else {
-  revealItems.forEach(item => {
-    item.classList.remove("reveal");
-  });
+  items.forEach(item => item.classList.remove("reveal"));
 }
 
 
 // ----- Carousels: leaders, gallery and unit photo stages -----
-document.querySelectorAll(
-  ".leaders-carousel, [data-carousel]"
-).forEach(box => {
+// Works for anything with the old leaders classes or a data-carousel attribute.
+document.querySelectorAll(".leaders-carousel, [data-carousel]").forEach(box => {
   const track = box.querySelector(".leaders-track, .c-track");
-  const prevButton = box.querySelector(".leaders-prev, .c-prev");
-  const nextButton = box.querySelector(".leaders-next, .c-next");
+  const prev = box.querySelector(".leaders-prev, .c-prev");
+  const next = box.querySelector(".leaders-next, .c-next");
   const count = box.querySelector(".stage-count");
-
-  if (!track || !prevButton || !nextButton) return;
+  if (!track || !prev || !next) return;
 
   const step = Number(box.dataset.step) || 0.8;
 
-  function updateCarousel() {
-    const maxScroll = track.scrollWidth - track.clientWidth;
-
-    prevButton.disabled = track.scrollLeft <= 2;
-    nextButton.disabled = track.scrollLeft >= maxScroll - 2;
-
+  function update() {
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
     if (count) {
       const total = track.children.length;
-      const index = Math.round(
-        track.scrollLeft / track.clientWidth
-      ) + 1;
-
-      count.textContent =
-        Math.min(index, total) + " / " + total;
+      const index = Math.round(track.scrollLeft / track.clientWidth) + 1;
+      count.textContent = Math.min(index, total) + " / " + total;
     }
   }
 
-  prevButton.addEventListener("click", () => {
-    track.scrollBy({
-      left: -track.clientWidth * step,
-      behavior: "smooth"
-    });
-  });
-
-  nextButton.addEventListener("click", () => {
-    track.scrollBy({
-      left: track.clientWidth * step,
-      behavior: "smooth"
-    });
-  });
-
-  track.addEventListener("scroll", updateCarousel, {
-    passive: true
-  });
-
-  window.addEventListener("resize", updateCarousel);
-
-  updateCarousel();
+  prev.addEventListener("click", () => track.scrollBy({ left: -track.clientWidth * step, behavior: "smooth" }));
+  next.addEventListener("click", () => track.scrollBy({ left: track.clientWidth * step, behavior: "smooth" }));
+  track.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
 });
 
 
 // ----- Gallery filter buttons -----
-const galleryFilters = document.querySelectorAll(".g-filter");
+const filters = document.querySelectorAll(".g-filter");
 const galleryItems = document.querySelectorAll(".g-item");
 const galleryTrack = document.querySelector(".gallery-scroller");
 
-galleryFilters.forEach(button => {
+filters.forEach(button => {
   button.addEventListener("click", () => {
-    const selectedFilter = button.dataset.filter;
-
-    galleryFilters.forEach(filter => {
-      filter.setAttribute(
-        "aria-pressed",
-        String(filter === button)
-      );
-    });
+    filters.forEach(b => b.setAttribute("aria-pressed", String(b === button)));
 
     galleryItems.forEach(item => {
-      item.hidden =
-        selectedFilter !== "all" &&
-        item.dataset.cat !== selectedFilter;
+      item.hidden = button.dataset.filter !== "all" && item.dataset.cat !== button.dataset.filter;
     });
 
     if (galleryTrack) {
@@ -173,72 +99,45 @@ galleryFilters.forEach(button => {
 });
 
 
-// ----- Units page: highlight the unit being viewed -----
-const unitLinks = [
-  ...document.querySelectorAll(".unit-nav a")
-];
-
+// ----- Units page: highlight the unit you are reading -----
+const unitLinks = [...document.querySelectorAll(".unit-nav a")];
 const unitList = document.querySelector(".unit-nav-list");
 
-if (
-  unitLinks.length &&
-  "IntersectionObserver" in window
-) {
+if (unitLinks.length && "IntersectionObserver" in window) {
   let lastActive = null;
 
   const unitObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
 
-      const activeLink = unitLinks.find(link => {
-        return link.getAttribute("href") ===
-          "#" + entry.target.id;
-      });
+      const active = unitLinks.find(link => link.getAttribute("href") === "#" + entry.target.id);
+      if (!active || active === lastActive) return;
+      lastActive = active;
 
-      if (!activeLink || activeLink === lastActive) return;
+      unitLinks.forEach(link => link.classList.toggle("active", link === active));
 
-      lastActive = activeLink;
-
-      unitLinks.forEach(link => {
-        link.classList.toggle("active", link === activeLink);
-      });
-
-      // Move the navigation row without interrupting page scrolling.
+      // Slide only the button row sideways. (scrollIntoView would interrupt your swiping.)
       if (unitList) {
-        const left =
-          activeLink.offsetLeft -
-          unitList.offsetLeft -
-          (unitList.clientWidth - activeLink.offsetWidth) / 2;
-
-        unitList.scrollTo({
-          left,
-          behavior: "smooth"
-        });
+        const left = active.offsetLeft - unitList.offsetLeft - (unitList.clientWidth - active.offsetWidth) / 2;
+        unitList.scrollTo({ left: left, behavior: "smooth" });
       }
     });
-  }, {
-    rootMargin: "-40% 0px -50% 0px"
-  });
+  }, { rootMargin: "-40% 0px -50% 0px" });
 
   unitLinks.forEach(link => {
-    const target = document.querySelector(
-      link.getAttribute("href")
-    );
-
-    if (target) {
-      unitObserver.observe(target);
-    }
+    const section = document.querySelector(link.getAttribute("href"));
+    if (section) unitObserver.observe(section);
   });
 }
 
 
-// ----- Join Unit buttons: open WhatsApp -----
-
-// Use international format without + or the leading 0.
-// Example: 2348012345678
-
+// ----- "Join Unit" buttons open WhatsApp with each unit's leader -----
+// EDIT HERE: for each unit, paste the leader's WhatsApp number OR a full WhatsApp link.
+//   Number: international format, for example "2348012345678" (no + and no leading 0;
+//           "0801 234 5678" or "+234 801 234 5678" also work).
+//   Link:   for example "https://wa.me/2348012345678"
+// Leave a unit as "" to use the link already written in units.html (or the default number).
 const DEFAULT_WHATSAPP = "2347063697174";
-
 const UNIT_LEADERS = {
   choir: "https://wa.me/2347033605723",
   drama: "https://wa.me/qr/RQNOXDQYBVJWF1",
@@ -250,21 +149,39 @@ const UNIT_LEADERS = {
   tigers: "https://wa.me/message/VKJUU2P3N4EJB1"
 };
 
+function whatsappLink(value, message) {
+  value = value.trim();
+
+  // A full link was pasted: use it exactly as it is.
+  if (/^https?:\/\//i.test(value)) {
+    // Only plain number links (wa.me/234...) can carry a ready-made message.
+    // QR and message links (wa.me/qr/..., wa.me/message/...) must stay untouched.
+    if (/^https?:\/\/wa\.me\/\d+$/i.test(value)) {
+      return value + "?text=" + encodeURIComponent(message);
+    }
+    return value;
+  }
+
+  // A phone number was typed: clean it up.
+  let number = value.replace(/\D/g, "");
+  if (number.startsWith("0")) number = "234" + number.slice(1);
+  return "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
+}
+
 document.querySelectorAll("[data-unit]").forEach(link => {
-  const unit = link.dataset.unit;
-  const number = UNIT_LEADERS[unit] || DEFAULT_WHATSAPP;
-  const unitName = link.dataset.name || unit;
+  const message = "Hello, I would like to join the " + link.dataset.name + " of The SJYF Tribe.";
+  const typed = (UNIT_LEADERS[link.dataset.unit] || "").trim();
 
-  const message =
-    "Hello, I would like to join the " +
-    unitName +
-    " of The SJYF Tribe.";
-
-  link.href =
-    "https://wa.me/" +
-    number +
-    "?text=" +
-    encodeURIComponent(message);
+  if (typed) {
+    link.href = whatsappLink(typed, message);
+  } else {
+    // Nothing typed above: keep a custom link written in units.html,
+    // and only fall back to the default number when there isn't one.
+    const current = link.getAttribute("href") || "";
+    if (!current || current === "#" || current.includes(DEFAULT_WHATSAPP)) {
+      link.href = whatsappLink(DEFAULT_WHATSAPP, message);
+    }
+  }
 });
 
 
@@ -274,16 +191,9 @@ const propheticExtra = document.querySelector("#prophetic-extra");
 
 if (propheticToggle && propheticExtra) {
   propheticToggle.addEventListener("click", () => {
-    const isExpanded =
-      propheticToggle.getAttribute("aria-expanded") === "true";
-
+    const isExpanded = propheticToggle.getAttribute("aria-expanded") === "true";
     propheticExtra.hidden = isExpanded;
-
-    propheticToggle.setAttribute(
-      "aria-expanded",
-      String(!isExpanded)
-    );
-
+    propheticToggle.setAttribute("aria-expanded", String(!isExpanded));
     propheticToggle.innerHTML = isExpanded
       ? 'See More <span aria-hidden="true">↓</span>'
       : 'See Less <span aria-hidden="true">↑</span>';
@@ -292,8 +202,5 @@ if (propheticToggle && propheticExtra) {
 
 
 // ----- Automatic footer year -----
-const yearElement = document.getElementById("year");
-
-if (yearElement) {
-  yearElement.textContent = new Date().getFullYear();
-}
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();
