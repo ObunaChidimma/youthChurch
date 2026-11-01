@@ -240,14 +240,14 @@ if (
 const DEFAULT_WHATSAPP = "2347063697174";
 
 const UNIT_LEADERS = {
-  choir: "2347063697174",
-  drama: "2347063697174",
-  prayer: "2347063697174",
-  evangelism: "2347063697174",
-  welfare: "2347063697174",
-  ushering: "2347063697174",
-  media: "2347063697174",
-  tigers: "2347063697174"
+  choir: "https://wa.me/2347033605723",
+  drama: "https://wa.me/qr/RQNOXDQYBVJWF1",
+  prayer: "https://wa.me/message/VKJUU2P3N4EJB1",
+  evangelism: "https://wa.me/qr/D3QJJU46ORKSC1",
+  welfare: "https://wa.me/2347063697174",
+  ushering: "https://wa.me/qr/A3LKFLQU4GR5A1",
+  media: "https://wa.me/message/VKJUU2P3N4EJB1",
+  tigers: "https://wa.me/message/VKJUU2P3N4EJB1"
 };
 
 document.querySelectorAll("[data-unit]").forEach(link => {
